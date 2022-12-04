@@ -6,12 +6,18 @@ var searchFormEl = document.querySelector('#search-form');
 var searchInputVal = document.querySelector('#search-input');
 var SpotlightEl = document.querySelector("#spotlight");
 var citylist = document.querySelector("#citybuttonlist");
+var day1 = document.querySelector("#day1");
+var day2 = document.querySelector("#day2");
+var day3 = document.querySelector("#day3");
+var day4 = document.querySelector("#day4");
+var day5 = document.querySelector("#day5");
 
 //added date to spotlight
 function displayDate(){
     var todaydate = dayjs().format ('MMM DD, YYYY');
     SpotlightEl.textContent = todaydate + " " + "Today's weather is "; //need to add weather text
-    
+    //var day1 = dayjs().format ('MMM DD, YYYY'); ????
+    day1.textContent = dayjs().isAfter(todaydate);
 }
 //calling displayed time
 displayDate();
@@ -24,14 +30,8 @@ function handleSearchFormSubmit(event) {
     const citysearched = searchInputVal.value;
     window.localStorage.setItem('city', JSON.stringify(citysearched));
     console.log(citysearched);
-    //SpotlightEl.innerHTML = citysearched;  trial 
-
-  // if (!searchInputVal.value) {
-     // console.error('You need a search input value!');
-   //  return;
-  // }
- //getWeather(searchInputVal.value);
- //return;
+    getWeather(searchInputVal.value);
+ return;
     createSearchBtn ();
   }
 

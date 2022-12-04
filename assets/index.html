@@ -34,7 +34,7 @@
                 <section class="row justify-content-around">
 
                 <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <div class="card">
+                    <div class="card" id = "day1">
                     <h3 class="card-header bg-info">
                         Day 1
                     </h3>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <div class="card">
+                    <div class="card" id = "day2">
                     <h3 class="card-header bg-info">
                         Day 2
                     </h3>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <div class="card">
+                    <div class="card"  id = "day3">
                     <h3 class="card-header bg-info">
                         Day 3
                     </h3>
@@ -71,7 +71,7 @@
                 </div>
                 
                 <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <div class="card">
+                    <div class="card"  id = "day4">
                     <h3 class="card-header bg-info">
                         Day 4
                     </h3>
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <div class="card">
+                    <div class="card"  id = "day5">
                     <h3 class="card-header bg-info">
                         Day 5
                     </h3>
@@ -92,6 +92,10 @@
                         <p class="card-text">
                             Weather for:
                         </p>
+                        <div id = "cardtemp">Temperature:</div>
+                        <div id = "cardhumidity"> Humidity:</div>
+                        <div id = "cardwind">Wind Speed:</div>
+                        <div id = "cardsymbol">Icon placeholder</div>
                     </div>
                     </div>
                 </div>
@@ -105,13 +109,10 @@
                 <input id="search-input" class="form-input w-100" type ="text" placeholder="Search">
                 <button class="btn btn-info btn-block">Search
                 </button>
-                <div id = "citybuttonlist"></div>
             </form>
 
         <!-- Place holder to append searched cities -->
-            <div class = "border border-dark">
-                City List
-            </div>
+        <div id = "citybuttonlist">
             </div> <!-- End of Search Side bar section -->
         </section> <!-- End of main section cols -->
 
