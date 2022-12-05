@@ -11,18 +11,22 @@ var cardhumidityEL =document.querySelectorAll(".cardhumidity");
 var cardwindEL = document.querySelectorAll(".cardwind");
 var cardsymbolEL = document.querySelectorAll(".cardsymbol");
 var todaydate = dayjs();
+//spotlight vars
+var spotdateEL = document.querySelector("#spotdate")
+var spottempEL = document.querySelector("#spottemp")
+var spothumidityEL = document.querySelector("#spothumidity")
+var spotwindEL = document.querySelector("#spotwind")
+var spoticonEL = document.querySelector("#spoticon")
+
 
 //icon code "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png" 
 //data.weather[0].icon is the code entered 
 
 //added date to spotlight
-function displayDate(){
-    SpotlightEl.textContent = todaydate.format ('MMM DD, YYYY') + " " + "Today's weather is "; //need to add weather text
-}
-//calling displayed time
-displayDate();
 
-//////////////////
+spotdateEL.textContent = todaydate.format ('MMM DD, YYYY');
+
+
 
 //for loop for dates in cards
 for (let i = 1; i < 6; i++) {
@@ -30,7 +34,7 @@ for (let i = 1; i < 6; i++) {
     var newdate = todaydate.add(i, 'day');
     carddateEL.textContent = newdate.format ('MMM DD, YYYY')
 }
-console.log(newdate); ////????
+
 
 //Submit button ID search
 //Click event listener 
@@ -68,12 +72,21 @@ fetch(URLAPI)
 .then(function(data){
 console.log("THIS IS DATA: ", data)
 console.log(data.main.temp)
+//temp
 window.localStorage.setItem('temp', JSON.stringify(data.main.temp));
-SpotlightEl.innerHTML = "";
-var tempEL = document.createElement("p");
-tempEL.textContent = "temperature " + data.main.temp;
+spottempEL.innerHTML = "";
+spottempEL.textContent = data.main.temp;
+//humidity
+window.localStorage.setItem('humidity', JSON.stringify(data.main.humidity));
+spothumidityEL.innerHTML = "";
+spothumidityEL.textContent = data.main.humidity;
+//wind
+window.localStorage.setItem('wind', JSON.stringify(data.wind.speed));
+spotwindEL.innerHTML = "";
+spotwindEL.textContent = data.wind.speed;
+//Icon
 
-SpotlightEl.append(tempEL);
+//calls forecast 
 forecast(data.coord.lon,data.coord.lat)
 })
 }
