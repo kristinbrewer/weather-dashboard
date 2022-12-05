@@ -1,16 +1,13 @@
 var APIkey = "c117587cfcafa1253c62bb6dccbc1226";
-
+//form vars
 var searchFormEl = document.querySelector('#search-form');
 var searchInputVal = document.querySelector('#search-input');
 var SpotlightEl = document.querySelector("#spotlight");
 var citylist = document.querySelector("#citybuttonlist");
+var searchbuttonEL= document.querySelector('#searchbutton')
 //card vars
 var card = document.querySelectorAll(".card");
 var carddateEL = document.querySelector(".carddate ");
-
-
-
-
 var todaydate = dayjs();
 //spotlight vars
 var spotdateEL = document.querySelector("#spotdate")
@@ -20,14 +17,8 @@ var spotwindEL = document.querySelector("#spotwind")
 var spoticonEL = document.querySelector("#spoticon")
 
 
-//icon code "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png" 
-//data.weather[0].icon is the code entered 
-
 //added date to spotlight
-
 spotdateEL.textContent = todaydate.format ('MMM DD, YYYY');
-
-
 
 //for loop for dates in cards
 for (let i = 1; i < 6; i++) {
@@ -35,7 +26,6 @@ for (let i = 1; i < 6; i++) {
     var newdate = todaydate.add(i, 'day');
     carddateEL.textContent = newdate.format ('MMM DD, YYYY')
 }
-
 
 //Submit button ID search
 //Click event listener 
@@ -54,11 +44,18 @@ function handleSearchFormSubmit(event) {
   //add event listner for button to store data and call getweather by passing in the text of the button 
   function createSearchBtn () {
     const btn = document.createElement('button');
-    btn.innerText = "New Button";
-  citylist.appendChild(btn);
+    citylist.appendChild(btn);
     btn.innerText = window.localStorage.getItem('city');
+      //event listener for button
+   btn.addEventListener('click',handleSearchHistory);
+   function handleSearchHistory (event) {
+   event.preventDefault();
+   ///call storage functions 
+   }
     return btn; 
   }
+
+ 
   
 //gets weather
 function getWeather (cityname) {
@@ -125,9 +122,11 @@ function forecast (longitude, latitude){
         cardsymbolEL.innerHTML = "<img src = https://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png>";
     }
             }
+
         }
-  
-    
+       
+
     })
 
 }
+
