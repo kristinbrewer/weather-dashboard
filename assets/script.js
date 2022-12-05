@@ -4,12 +4,13 @@ var searchFormEl = document.querySelector('#search-form');
 var searchInputVal = document.querySelector('#search-input');
 var SpotlightEl = document.querySelector("#spotlight");
 var citylist = document.querySelector("#citybuttonlist");
+//card vars
 var card = document.querySelectorAll(".card");
-var carddateEL = document.querySelectorAll(".carddate");
-var cardtempEL = document.querySelectorAll(".cardtemp");
-var cardhumidityEL =document.querySelectorAll(".cardhumidity");
-var cardwindEL = document.querySelectorAll(".cardwind");
-var cardsymbolEL = document.querySelectorAll(".cardsymbol");
+var carddateEL = document.querySelector(".carddate ");
+
+
+
+
 var todaydate = dayjs();
 //spotlight vars
 var spotdateEL = document.querySelector("#spotdate")
@@ -85,7 +86,7 @@ window.localStorage.setItem('wind', JSON.stringify(data.wind.speed));
 spotwindEL.innerHTML = "";
 spotwindEL.textContent = data.wind.speed;
 //Icon
-
+spoticonEL.innerHTML = "<img src = https://openweathermap.org/img/w/" + data.weather[0].icon + ".png>";
 //calls forecast 
 forecast(data.coord.lon,data.coord.lat)
 })
@@ -105,8 +106,28 @@ function forecast (longitude, latitude){
         for (var i= 0; i <data.list.length; i++) {
             if (data.list[i].dt_txt.indexOf("12:00:00") > 0){
                 console.log(data.list[i])
+                  //for loop to add forecast data to cards 
+    for (let i =1; i<6; i++) {
+        //temperature
+        var cardtempEL = document.querySelector("#cardtemp" + i);
+        cardtempEL.innerHTML = "";
+        cardtempEL.textContent = data.list[i].main.temp;
+        //humidity
+        var cardhumidityEL =document.querySelector("#cardhumidity" + i);
+        cardhumidityEL.innerHTML = "";
+        cardhumidityEL.textContent = data.list[i].main.humidity;
+        //wind
+        var cardwindEL = document.querySelector("#cardwind" + i);
+        cardwindEL.innerHTML = "";
+        cardwindEL.textContent = data.list[i].wind.speed;
+        //icon
+        var cardsymbolEL = document.querySelector("#cardsymbol" + i);
+        cardsymbolEL.innerHTML = "<img src = https://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png>";
+    }
             }
         }
+  
+    
     })
 
 }
