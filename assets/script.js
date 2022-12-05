@@ -45,12 +45,16 @@ function handleSearchFormSubmit(event) {
   function createSearchBtn () {
     const btn = document.createElement('button');
     citylist.appendChild(btn);
-    btn.innerText = window.localStorage.getItem('city');
+    var searchcity = window.localStorage.getItem('city');
+    btn.innerText = searchcity;
       //event listener for button
-   btn.addEventListener('click',handleSearchHistory);
-   function handleSearchHistory (event) {
-   event.preventDefault();
+   btn.addEventListener('click',function (event) {handleSearchHistory(event, searchcity)});
+   function handleSearchHistory (event, city) {
+////stopped here
+  // searchhistory();
+  getWeather(city);
    ///call storage functions 
+
    }
     return btn; 
   }
@@ -130,3 +134,36 @@ function forecast (longitude, latitude){
 
 }
 
+//adding cities to an array
+function searchhistory (citysearched) {
+    let cities = [];
+    let pastcities = localStorage.getItem("citylist");
+    if (pastcities == null) {
+        cities.push(citysearched);
+    }
+    else {
+        pastcities = JSON.parse(pastcities);
+        pastcities = push(citysearched);
+        cities = pastcities;
+    }
+    localStorage.setItem("citylist", JSON.stringify(cities))
+    showsearchedhistory();
+}
+//putting buttons on page 
+function showsearchedhistory() {
+    let cities = localStorage.getItem("citylist");
+    if (cities !=null) {
+        cities = JSON.parse(cities);
+        cities = cities.reverse();
+        if (cities.length > 5){
+            cities = cities.slice (0,5);
+        };
+    
+        let list = "";
+        var pastsearchEL = document.querySelector("#pastsearch");
+        pastsearchEL.innerHTML = list;
+        createSearchBtn();
+    }
+    
+    }
+showsearchedhistory();

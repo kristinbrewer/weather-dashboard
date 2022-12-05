@@ -8,7 +8,7 @@ This is a bootcamp design challenge that brings users to a landing page where th
 
 ## Mockup
 
-![Mockup of Work Day Scheduler](WorkSchedIMG.png)
+![Mockup of Weather Dashboard](weatherdash.png)
 
 ## Page Link
 https://kristinbrewer.github.io/weather-dashboard/
