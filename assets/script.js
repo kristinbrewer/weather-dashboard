@@ -135,15 +135,16 @@ function forecast (longitude, latitude){
 }
 
 //adding cities to an array
-function searchhistory (citysearched) {
+var pastsearchEL = document.querySelector("#pastsearch");
+function searchhistory () {
     let cities = [];
     let pastcities = localStorage.getItem("citylist");
     if (pastcities == null) {
-        cities.push(citysearched);
+        cities.push(pastsearchEL.textContent);
     }
     else {
         pastcities = JSON.parse(pastcities);
-        pastcities = push(citysearched);
+        pastcities = push(pastsearchEL.textContent);
         cities = pastcities;
     }
     localStorage.setItem("citylist", JSON.stringify(cities))
@@ -160,7 +161,7 @@ function showsearchedhistory() {
         };
     
         let list = "";
-        var pastsearchEL = document.querySelector("#pastsearch");
+        
         pastsearchEL.innerHTML = list;
         createSearchBtn();
     }
