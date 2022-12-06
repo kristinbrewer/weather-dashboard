@@ -157,7 +157,7 @@ function searchhistory() {
     cities.push(pastsearchEL.textContent);
   } else {
     pastcities = JSON.parse(pastcities);
-    pastcities = push(pastsearchEL.textContent);
+    pastcities.push(pastsearchEL.textContent);
     cities = pastcities;
   }
   localStorage.setItem("citylist", JSON.stringify(cities));
@@ -168,7 +168,7 @@ function showsearchedhistory() {
   let cities = localStorage.getItem("citylist");
   if (cities != null) {
     cities = JSON.parse(cities);
-    cities = cities.reverse();
+    cities = cities.reverse(); //unshift 
     if (cities.length > 5) {
       cities = cities.slice(0, 5);
     }
